@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact {% endblock title %}
+
+{% block content %}
+
+<body class="bg-gray-800 text-gray-100  ">
+    <div
+        class="max-w-screen-xl mt-10 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-400 text-gray-900 rounded-lg shadow-lg">
+
+        {% comment %} this file provide some extra css to this page  {% endcomment %}
+        {% include 'color.html' %} 
+
+        {% comment %} contact form  {% endcomment %}
+        <div class="">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% for fm in  form%}
+                    <div class="mt-8">
+                        <span class="uppercase text-sm text-gray-600 font-bold">{{fm.label_tag}}</span>
+                        {{fm}}
+                        {{fm.errors|striptags}}
+                    </div>
+                {% endfor %}
+                <div class="mt-8">
+                    <input
+                        class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+                        type="submit" value="Send Message">
+            </form>
+        </div>
+
+        {% comment %} end here  {% endcomment %}
+    </div>
+    </div>
+</body>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} view data {% endblock title %}
+
+{% block content %}
+
+<div class="container bg-gray-400 mt-5 rounded-2xl">
+    <div class="row">
+        <div class="col-sm-12">
+            {% comment %} title purpose  {% endcomment %}
+            <h1 class=" text-center mt-4 font-sans text-4xl " > Title - {{form.title}}</h1>
+
+            {% comment %} display the description  {% endcomment %}
+            <p class="mt-4">{{form.des | safe}}</p>
+
+            {% comment %} this is used to display the code using prism library  {% endcomment %}
+            <pre> <code class="language-{{form.language}}"> {{form.code|safe}} </code></pre>
+
+            <h5 class=" mt-2 font-sans text-4xl " > Author - {{form.user}}</h5>
+            <h5 class=" mt-2 font-sans text-4xl " > Posted on - {{form.postedon}}</h5>
+        </div>
+    
+    
+    </div>
+</div>
+
+
+{% endblock content %}

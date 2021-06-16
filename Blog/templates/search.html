@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% comment %} this page diplays all search result related to query givem  {% endcomment %}
+<h1 class="text-center alert alert-success text-2xl mt-2">Search result for - {{name}} </h1>
+
+
+
+<div class="container">
+
+    <table class="min-w-max w-full table-auto">
+        <thead>
+            <tr class="bg-gray-400 text-gray-600 uppercase text-sm leading-normal">
+                <th class="py-3 px-6 text-left">Sr no</th>
+                <th class="py-3 px-6 text-left">Title</th>
+                <th class="py-3 px-6 text-left">Language</th>
+                <th class="py-3 px-6 text-left">Posted on</th>
+                {% comment %} <th class="py-3 px-6 text-center">Status</th> {% endcomment %}
+                <th class="py-3 px-6 text-left">Author</th>
+            </tr>
+        </thead>
+
+        {% comment %} show all search data  {% endcomment %}
+        <tbody class="text-gray-600 text-sm font-light">
+
+            {% for fm in form %}
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <td class="py-3 px-6 text-left">
+                    <div class="flex items-center">
+                        <span class="font-medium text-sm">{{forloop.counter}}</span>
+                    </div>
+                </td>
+                <td class="py-3 px-6 text-left whitespace-nowrap">
+                    <div class="flex items-center">
+                        <a class="font-medium" href="{% url 'viewdata' fm.id %}">{{fm.title}}</a>
+                    </div>
+                </td>
+                <td class="py-3 px-6 text-left">
+                    <div class="flex items-center">
+                        <span class="font-medium text-sm">{{fm.language}}</span>
+                    </div>
+                </td>
+                <td class="py-3 px-6 text-center">
+                    <div class="flex items-center">
+                        <span class="font-medium ">{{fm.postedon}}</span>
+                    </div>
+                </td>
+                <td class="py-3 px-6 text-center">
+                    <div class="flex items-center">
+                        <span class="font-medium ">{{fm.user}}</span>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            {% comment %} end here  {% endcomment %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}

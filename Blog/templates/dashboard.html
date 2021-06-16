@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="overflow-x-auto">   
+        <div
+            class="min-w-screen min-h-screen bg-gray-600 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+            
+            <div class="w-full lg:w-5/6">
+
+                {% comment %} this if for the user profile which also edit the user profile  {% endcomment %}
+                {% include 'db.html' %}
+                
+
+                {% comment %} this code is for adding a new post by user  {% endcomment %}
+                <form  class = "mt-10"action="{% url 'addpost' %}" method="POST">
+                    {% csrf_token %}
+                    <input class = "d-inline text-center text-1xl ml-1 font-sans btn btn-warning" type="submit" value="Add Post">
+                    <h1 class="d-inline text-center text-2xl ml-10 font-sans btn btn-info">Recent Posts...</h1>
+                </form>
+
+                {% comment %}   here we show user his all post  in form of table {% endcomment %}
+                <div class="bg-white shadow-md rounded my-6">
+                    
+                    <table class="min-w-max w-full table-auto mt-2">
+
+                        <thead>
+                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                <th class="py-3 px-6 text-left">Title</th>
+                                <th class="py-3 px-6 text-left">Language</th>
+                                <th class="py-3 px-6 text-center">Posted on</th>
+                                {% comment %} <th class="py-3 px-6 text-center">Status</th> {% endcomment %}
+                                <th class="py-3 px-6 text-center">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-gray-600 text-sm font-light">
+
+                            {% comment %} all post data in for loop  {% endcomment %}
+                            {% for fm in form %}
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <span class="font-medium">{{fm.title}}</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center">
+                                        <span>{{fm.language}}</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex items-center justify-center">
+                                        <span>{{fm.postedon}}</span>
+                                    </div>
+                                </td>
+
+                                {% comment %} action perform on post  {% endcomment %}
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex item-center justify-center">
+
+                                        {% comment %} first button to view the particular post in new page  {% endcomment %}
+                                        <form class="ml-1" action="{% url 'viewdata' fm.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input class = " bg-purple-500 hover:bg-purple-700 border-purple-500 hover:border-purple-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" value="view">
+                                        </form>
+                                        
+
+                                        {% comment %} It is for editing the post iif user wishes to edit it  {% endcomment %}
+                                        {% comment %} <form class="ml-1" action="{% url 'edit' fm.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input class = " bg-green-500 hover:bg-green-700 border-green-500 hover:border-green-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" value="Edit">
+                                        </form> {% endcomment %}
+                                        
+                                        {% comment %} this is for deleting the post by delete button  {% endcomment %}
+                                        <form class="ml-1" action="{% url 'delete' fm.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input class = " bg-red-500 hover:bg-red-700 border-red-500 hover:border-red-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" value="Delete">
+                                        </form>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% comment %} for loop end here  {% endcomment %}
+                        </tbody>
+                    </table>
+
+                    {% comment %} this code is for paginator which link to page.html page  {% endcomment %}
+                    <div class="mt-6 ml-10 float-center">
+                    {% include 'page.html' with page=form %}
+                    </div>
+                    {% comment %} it ends here  {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

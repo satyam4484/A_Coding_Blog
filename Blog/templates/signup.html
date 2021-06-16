@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} signup {% endblock title %}
+
+{% block content %}
+<div class="container">
+
+        {% comment %} sign up form  {% endcomment %}
+        <div class="max-w-screen-xl mt-10 px-8 grid gap-8 grid-cols-1  md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-400 text-gray-900 rounded-lg shadow-lg">
+        <h1 class="uppercase text-sm text-gray-600 font-bold text-2xl text-center">Sign up for Free!</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% comment %} diplay form  {% endcomment %}
+                {% for fm in  form%}
+                    <div class="mt-1">
+                        <span class="uppercase text-sm text-gray-600 font-bold">{{fm.label_tag}}</span>
+                        {{fm}}
+                        {{fm.errors|striptags}}
+                    </div>
+                {% endfor %}
+    {% comment %} submit button  {% endcomment %}
+                <div class="mt-8">
+                    <input
+                        class="uppercase text-sm font-bold tracking-wide bg-green-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+                        type="submit" value="Sign up">
+            </form> 
+        </div>
+</div>
+{% endblock content %}

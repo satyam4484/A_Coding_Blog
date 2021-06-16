@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Editpost{% endblock title %}
+
+
+{% comment %} this page edit the particular post  {% endcomment %}
+{% block content %}
+<body class="bg-gray-800 text-gray-100 px-8 py-12 ">
+    <div
+        class="max-w-screen-xl mt-20 px-8 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-500 text-gray-900 rounded-lg shadow-lg">
+        <div class="">
+            
+            {% comment %} form starts here {% endcomment %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+                {% for fm in  form%}
+                    <div class="mt-2">
+                        <span class=" mt-1 text-center uppercase text-2xl text-gray-600 font-bold">{{fm.label_tag}}</span>
+                        {{fm}} 
+                        <span class="text-sm font-bold">{{fm.errors|striptags}}</span>
+                    </div>
+                {% endfor %}
+
+                <div class="mt-8">
+                    <input
+                        class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+                        type="submit" value="Add Post">
+            </form>
+            {% comment %} end her e  {% endcomment %}
+        </div>
+        {% comment %} <h1 class="text-center alert alert-danger">hello</h1> {% endcomment %}
+    </div>
+</div>
+</body>
+
+
+
+
+
+
+
+{% endblock content %}

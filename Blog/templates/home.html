@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+<div class="overflow-x-auto bg-gray-700">
+        <div class="min-w-screen min-h-screen bg-gray-700 flex mt-10 justify-center bg-gray-100 font-sans overflow-hidden">
+            <div class="w-full lg:w-5/6">
+
+                <h1 class="text-center font-bold alert alert-danger text-2xl">All Posts</h1>
+
+                <div class="bg-white shadow-md rounded ">
+
+                    {% comment %} Table to view data which is coming from home page  {% endcomment %}
+                    <table class="min-w-max w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-400 text-gray-600 uppercase text-sm leading-normal">
+                                <th class="py-3 px-6 text-left">Sr no</th>
+                                <th class="py-3 px-6 text-left">Title</th>
+                                <th class="py-3 px-6 text-left">Language</th>
+                                <th class="py-3 px-6 text-left">Posted on</th>
+                                {% comment %} <th class="py-3 px-6 text-center">Status</th> {% endcomment %}
+                                <th class="py-3 px-6 text-left">Author</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-gray-600 text-sm font-light">
+                            {% comment %} traverse all data one by one and display it  {% endcomment %}
+                            {% for fm in form %}
+                                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                    <td class="py-3 px-6 text-left">
+                                        <div class="flex items-center">
+                                            <span class="font-medium text-sm">{{forloop.counter}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-6 text-left whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <a class ="font-medium " href="{% url 'viewdata' fm.id %}">{{fm.title}}</a>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-6 text-left">
+                                        <div class="flex items-center">
+                                            <span class="font-medium text-sm">{{fm.language}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-6 text-center">
+                                        <div class="flex items-center">
+                                            <span class="font-medium ">{{fm.postedon}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-6 text-center">
+                                        <div class="flex items-center">
+                                            <span class="font-medium ">{{fm.user}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            {% comment %} end here  {% endcomment %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% comment %} this is for the pagination which inlcude page.html  {% endcomment %}
+                <div class="mt-5">
+                    {% include 'page.html' with page=form %} 
+                </div>
+
+                {% comment %} End here  {% endcomment %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
