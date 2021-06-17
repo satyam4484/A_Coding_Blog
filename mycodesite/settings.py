@@ -21,7 +21,7 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ${{ secrets.DJANGO_KEY }}
+SECRET_KEY = "django-insecure-$mw^sq*k%^v)j$rt-+@ws-f74*naks_6^=f3vif8+!mv%ne7d^"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -137,5 +137,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "satyambsingh93@gmail.com"
-EMAIL_HOST_PASSWORD = ${{secrets.EMAIL_PASS}}
+EMAIL_HOST_USER =""
+EMAIL_HOST_PASSWORD = ""
