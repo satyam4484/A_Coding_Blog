@@ -13,7 +13,7 @@ from .models import postmodel
 def home(request):
     form = postmodel.objects.all()   # fetch all post form postmodel 
 
-    paginator = Paginator(form,3)    #paginator function 
+    paginator = Paginator(form,5)    #paginator function 
     page = request.GET.get('page')
     try:
         form = paginator.page(page)
@@ -31,7 +31,7 @@ def dashboard(request):
         form = postmodel.objects.filter(user = request.user)
 
         # paginator code for user 
-        paginator = Paginator(form,2)
+        paginator = Paginator(form,5)
         page = request.GET.get('page')
         try:
             form = paginator.page(page)
