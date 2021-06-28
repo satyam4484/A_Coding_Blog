@@ -1,3 +1,5 @@
+ [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsatyam4484%2FA_Coding_Blog&count_bg=%23C83D55&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
+
 # A Coding Blog 
 - A normal coding blog just created to test some basic django skills , but like that so will modify as soon as new concepts will come to mind 
 _____
